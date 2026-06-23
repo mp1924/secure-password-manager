@@ -52,7 +52,8 @@ Through this project, I gained practical experience in:
 * Authentication systems
 * Git and github flow
 
- ##Author
+
+ ## Author
  
  Pavana Maddi
   
