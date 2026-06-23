@@ -50,10 +50,11 @@ Through this project, I gained practical experience in:
 * Database management using SQLite
 * Password encryption and security concepts
 * Authentication systems
-* Secure storage practices
-* Git and GitHub workflow
+* Git and github flow
 
-## Author
-Pavana Maddi
-Pavana Maddi
-B.Tech CSHub profile link here.
+ ##Author
+ Pavana Maddi
+ 
+ 
+Secure storage practices
+*
