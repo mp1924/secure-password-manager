@@ -2,43 +2,90 @@ import secrets
 import string
 
 
+# ---------------- PASSWORD GENERATOR ----------------
 def generate_password(length, use_upper, use_lower, use_numbers, use_symbols):
-    char_pool = ""
+    """
+    Generate a secure random password.
+    """
 
-    if use_upper:
-        char_pool += string.ascii_uppercase
-    if use_lower:
-        char_pool += string.ascii_lowercase
-    if use_numbers:
-        char_pool += string.digits
-    if use_symbols:
-        char_pool += string.punctuation
+    try:
+        if not isinstance(length, int):
+            raise TypeError("Password length must be an integer.")
 
-    if not char_pool:
+        if length < 4:
+            raise ValueError("Password length must be at least 4 characters.")
+
+        char_pool = ""
+
+        if use_upper:
+            char_pool += string.ascii_uppercase
+
+        if use_lower:
+            char_pool += string.ascii_lowercase
+
+        if use_numbers:
+            char_pool += string.digits
+
+        if use_symbols:
+            char_pool += string.punctuation
+
+        if not char_pool:
+            raise ValueError("Select at least one character type.")
+
+        password = "".join(
+            secrets.choice(char_pool)
+            for _ in range(length)
+        )
+
+        return password
+
+    except Exception as e:
+        print(f"Password Generation Error: {e}")
         return None
 
-    password = "".join(secrets.choice(char_pool) for _ in range(length))
-    return password
 
-
+# ---------------- PASSWORD STRENGTH ----------------
 def check_strength(password):
-    import string
+    """
+    Returns:
+        Weak
+        Medium
+        Strong
+    """
 
-    score = 0
+    try:
+        if not password:
+            return "Weak"
 
-    if len(password) >= 8:
-        score += 1
-    if any(c.isupper() for c in password):
-        score += 1
-    if any(c.islower() for c in password):
-        score += 1
-    if any(c.isdigit() for c in password):
-        score += 1
-    if any(c in string.punctuation for c in password):
-        score += 1
+        score = 0
 
-    if score <= 2:
+        if len(password) >= 8:
+            score += 1
+
+        if any(c.isupper() for c in password):
+            score += 1
+
+        if any(c.islower() for c in password):
+            score += 1
+
+        if any(c.isdigit() for c in password):
+            score += 1
+
+        if any(c in string.punctuation for c in password):
+            score += 1
+
+        if len(password) >= 12:
+            score += 1
+
+        if score <= 2:
+            return "Weak"
+
+        elif score <= 4:
+            return "Medium"
+
+        else:
+            return "Strong"
+
+    except Exception as e:
+        print(f"Password Strength Error: {e}")
         return "Weak"
-    elif score <= 4:
-        return "Medium"
-    return "Strong"
