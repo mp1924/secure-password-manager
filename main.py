@@ -1,7 +1,6 @@
 """
 Entry point for the Secure Password Manager.
 """
-
 import logging
 import sys
 
