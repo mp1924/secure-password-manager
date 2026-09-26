@@ -5,7 +5,6 @@ from controllers.vault_controller import (
     save_password,
     load_passwords,
 )
-
 from gui.panels.header import create_header
 from gui.panels.add_password_panel import create_add_password_panel
 from gui.panels.vault_panel import create_vault_panel
